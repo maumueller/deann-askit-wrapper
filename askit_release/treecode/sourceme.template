@@ -1,0 +1,21 @@
+
+# location of the KNN library
+export KNN_DIR="/app/rkdtsrc/"
+
+# can use a specialized makefile.in file here if needed
+export PLATFORM=default
+
+# set this to true (and specify the location) if using the efficient KS library
+export USE_KS=false
+export KS_DIR=${location_of_ks}
+
+# ASKIT is currently only tested with these options, change at your own risk
+export MPICXX=/opt/intel/oneapi/mpi/2021.3.0/bin/mpiicpc
+export MPICC=/opt/intel/oneapi/mpi/2021.3.0/bin/mpiicc
+export FC=gfortran 
+export USE_MKL=true 
+export USE_GNU=false 
+export USE_INTEL=true
+
+
+			 
