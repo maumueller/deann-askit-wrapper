@@ -1,6 +1,6 @@
 
 # location of the KNN library
-export KNN_DIR="/rkdtsrc/"
+export KNN_DIR="/deann-askit-wrapper/rkdtsrc/"
 
 # can use a specialized makefile.in file here if needed
 export PLATFORM=default
