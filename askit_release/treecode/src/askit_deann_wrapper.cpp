@@ -166,6 +166,8 @@ int main (int argc, char* argv[])
                           alg.tree->inProcTestData->gids.data(),
                           alg.N_test, yest.data(), MPI_COMM_WORLD);
 
+  double oosqrtn = 1.0/sqrt(training_N);
+
 //  for (auto& d: potentials) {
 //    cout << d << endl;
 //  }
@@ -186,7 +188,7 @@ double time = alg.test_evaluation_time / test_N; // just report on the average b
 int samples = alg.num_kernel_evaluations / test_N;
 
 for (int i = 0; i < test_N; i++) {
-  cout << "RESULT id=" << i << " est=" << potentials[i] << " samples=" << samples <<  " time=" << time << endl;
+  cout << "RESULT id=" << i << " est=" << potentials[i] * oosqrtn << " samples=" << samples <<  " time=" << time << endl;
 }
   
 
