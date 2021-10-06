@@ -143,7 +143,11 @@ int main (int argc, char* argv[])
   askit_inputs.pruning_num_neighbors = 0;
 
 
+  double build_start = omp_get_wtime();
   AskitAlg<GaussianKernel> alg(train_data, kernel_inputs, askit_inputs);
+  double build_time = omp_get_wtime() - build_start;
+
+  std::cout << "BUILD TIME: " << build_time << std::endl;
 
   ifstream test_fstream(test_filename);
   
