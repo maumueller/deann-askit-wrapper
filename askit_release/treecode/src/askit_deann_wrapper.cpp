@@ -161,6 +161,9 @@ int main (int argc, char* argv[])
 
   fksData* test_data = ReadDistData(test_file_string, charge_filename, test_N, d, is_binary_file);
 
+
+  double query_start = omp_get_wtime();
+
   alg.AddTestPoints(test_N, test_data, test_knn_file, is_binary_file);
 
   potentials = alg.ComputeAllTestPotentials();
@@ -169,6 +172,8 @@ int main (int argc, char* argv[])
   alg.tree->shuffle_back(alg.N_test, potentials.data(),
                           alg.tree->inProcTestData->gids.data(),
                           alg.N_test, yest.data(), MPI_COMM_WORLD);
+
+  double query_time = omp_get_wtime() - query_start;
 
   double oosqrtn = 1.0/sqrt(training_N);
 
@@ -188,13 +193,15 @@ int main (int argc, char* argv[])
 //  std::cout << "Test Interaction List Blocking: " << alg.test_list_blocking_time << " s.\n";
 //  std::cout << "Update Charges time (average): " << alg.update_charges_time << " s.\n";
 
-double time = alg.test_evaluation_time / test_N; // just report on the average because of the batch mode
-int samples = alg.num_kernel_evaluations / test_N;
+    double time = alg.test_evaluation_time / test_N; // just report on the average because of the batch mode
+    int samples = alg.num_kernel_evaluations / test_N;
 
-for (int i = 0; i < test_N; i++) {
-  cout << "RESULT id=" << i << " est=" << potentials[i] * oosqrtn << " samples=" << samples <<  " time=" << time << endl;
-}
-  
+    std::cout << alg.test_evaluation_time << " vs. " << query_time << std::endl;
+
+    for (int i = 0; i < test_N; i++) {
+      cout << "RESULT id=" << i << " est=" << potentials[i] * oosqrtn << " samples=" << samples <<  " time=" << time << endl;
+    }
+      
 
   return 0;
   
