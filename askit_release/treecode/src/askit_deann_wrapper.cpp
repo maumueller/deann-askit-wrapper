@@ -84,6 +84,18 @@ int main (int argc, char* argv[])
   int oversampling_factor;
   cmd.addICmdOption("-oversampling", &oversampling_factor, 5, "Oversampling factor (Default: 5).");
 
+  int id_rank;
+  cmd.addICmdOption("-id_rank", &id_rank, 2048, "Id rank (Default: 2048).");
+
+  int num_skel_targets;
+  cmd.addICmdOption("-num_skel", &num_skel_targets, 2, "Skeleton targets (Default: 2).");
+
+  int num_uniform_required;
+  cmd.addICmdOption("-num_uniform", &num_uniform_required, 0, "uniform required (Default: 0).");
+
+  int min_skeleton_level;
+  cmd.addICmdOption("-min_skel_level", &min_skeleton_level, 2, "minimum skeleton level (Default: 2).");
+
   // output
   //char* output_file;
   //cmd.addSCmdOption("-output", &output_file, "output.txt", "File to store computed densities.");
@@ -107,12 +119,12 @@ int main (int argc, char* argv[])
   // Set up the inputs for the kernel function
 
   // These are generally good defaults
-  int num_skel_targets = 2;
-  int id_rank = 2048;
+  //int num_skel_targets = 2;
+  //int id_rank = 2048;
   int max_tree_level = 30;
-  int min_skeleton_level = 2;
-  int num_uniform_required = 0;
-  
+  //int min_skeleton_level = 2;
+  //int num_uniform_required = 0;
+
   AskitInputs askit_inputs(num_skel_targets, id_rank, max_points_per_node, max_tree_level,
     num_neighbors_in, min_skeleton_level, oversampling_factor, num_uniform_required, training_knn_filename, is_binary_file);
 
