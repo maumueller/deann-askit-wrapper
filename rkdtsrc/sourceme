@@ -1,7 +1,7 @@
 export KNN_DIR=$PWD
 echo "KNN_DIR = $KNN_DIR"
-export MPICC=/opt/intel/oneapi/mpi/2021.3.0/bin/mpiicc
-export MPICXX=/opt/intel/oneapi/mpi/2021.3.0/bin/mpiicc
+export MPICC=/opt/intel/oneapi/mpi/2021.4.0/bin/mpiicc
+export MPICXX=/opt/intel/oneapi/mpi/2021.4.0/bin/mpiicc
 export MPIF90=mpif90
 
 
